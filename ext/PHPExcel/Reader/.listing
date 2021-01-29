@@ -1,0 +1,15 @@
+drwxr-xr-x    4 Iusr_12428 inetuser         4096 Sep  3  2015 .
+drwxr-xr-x   13 Iusr_12428 inetuser         4096 Sep  3  2015 ..
+-rwxr-xr-x    1 Iusr_12428 inetuser        11527 Sep  6  2015 CSV.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         1799 Sep  6  2015 DefaultReadFilter.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        29152 Sep  6  2015 Excel2003XML.php
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 Excel2007
+-rwxr-xr-x    1 Iusr_12428 inetuser        90348 Sep  6  2015 Excel2007.php
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 Excel5
+-rwxr-xr-x    1 Iusr_12428 inetuser       221140 Sep  6  2015 Excel5.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        32418 Sep  6  2015 Gnumeric.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        14288 Sep  6  2015 HTML.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         1534 Sep  6  2015 IReadFilter.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         1577 Sep  6  2015 IReader.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        25210 Sep  6  2015 OOCalc.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        14885 Sep  6  2015 SYLK.php

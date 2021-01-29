@@ -1,0 +1,9 @@
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 .
+drwxr-xr-x    7 Iusr_12428 inetuser         4096 Sep  3  2015 ..
+-rwxr-xr-x    1 Iusr_12428 inetuser        10772 Sep  6  2015 bestFitClass.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         4234 Sep  6  2015 exponentialBestFitClass.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         3357 Sep  6  2015 linearBestFitClass.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         3608 Sep  6  2015 logarithmicBestFitClass.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         6239 Sep  6  2015 polynomialBestFitClass.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         4080 Sep  6  2015 powerBestFitClass.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         5638 Sep  6  2015 trendClass.php

@@ -1,0 +1,3 @@
+[27-May-2020 02:25:38 CST6CDT] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/nvtalent/public_html/wp-content/plugins/rb-agency/ext/dompdf/include/autoload.inc.php on line 83
+[27-May-2020 02:25:38 CST6CDT] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/nvtalent/public_html/wp-content/plugins/rb-agency/ext/dompdf/include/style.cls.php on line 784
+[27-May-2020 02:25:38 CST6CDT] PHP Deprecated:  Function create_function() is deprecated in /home/nvtalent/public_html/wp-content/plugins/rb-agency/ext/dompdf/include/text_frame_reflower.cls.php on line 374

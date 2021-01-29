@@ -1,0 +1,128 @@
+.rbform {
+	
+}
+.rbform * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0px;
+	min-height: 1px;
+}
+.rbform h3,
+.rbform p {
+	clear: both;
+}
+.rbform h3 {
+	padding-top: 30px;
+}
+.rbform p {
+	margin-bottom: 15px;
+}
+.rbform .rbfield {
+	float: left;
+	clear: both;
+	width: 100%;
+	margin: 0px;
+	max-width: 500px;
+	padding: 5px 0px;
+}
+.rbform.form-admin .rbfield {
+	max-width: 100%;
+	border-bottom: 1px solid #eee;
+}
+.rbform .rbfield > div,
+.rbform .rbfield > label,
+.rbform .rbfield > legend {
+	width: 50%;
+	float: left;
+	line-height: normal;		
+}
+.rbform.block .rbfield > div,
+.rbform.block .rbfield > label,
+.rbform.block .rbfield > legend {
+	width: 100%;
+}
+.rbform .rbfield > legend {
+	border: none;
+	color: inherit;
+	font-weight: bold;
+	font-size: inherit;	
+}
+.rbform .rbfield > div.option select,
+.rbform .rbfield > div.option input[type="text"],
+.rbform .rbfield > div.option input[type="email"],
+.rbform .rbfield > div.option input[type="password"] {
+	width: 88%;
+}
+.rbform .rbfield select,
+.rbform .rbfield textarea,
+.rbform .rbfield input[type="text"],
+.rbform .rbfield input[type="email"],
+.rbform .rbfield input[type="password"] {
+	width: 100%;
+	padding: 5px;	
+	border-radius: 3px;
+	font-family: inherit;
+	border: 1px solid #ccc;
+	min-height: 30px;
+}
+.rbform .rbfield select {
+	padding: 3px;
+	min-width: 100%;
+	min-height: 30px;
+}
+.rbform .rbfield textarea {
+	min-height: 100px;
+}
+.rbform .rbfield .rbfield-note {
+	line-height: normal;
+}
+.rbform .rbfield .rbfield-note.error {
+	color: red;
+}
+.rbform .rbfield.rbblock div > div {
+	width: 100%;
+	margin-bottom: 10px;
+}
+.rbform .rbfield.rbblock div > div:last-child {
+	margin-bottom: 0px;
+}
+.rbform .rbfield.rbblock div > div label,
+.rbform .rbfield.rbblock div > div div {
+	float: left;
+}
+.rbform .rbfield.rbblock div > div label {
+	width: 30%;
+}
+.rbform .rbfield.rbblock div > div div {
+	width: 70%;
+}
+.rbform .rbtext div div,
+.rbform .rbselect div div {
+	width: 45%;
+	float: left;
+}
+.rbform .rbtext div div:last-child,
+.rbform .rbselect div div:last-child {
+	float: right;
+}
+.rbform .rbfield.rbsubmit {
+	padding: 15px 0px;
+}
+.rbform .rbfield.rbsubmit input {
+	margin-bottom: 10px;
+}
+
+/* Widget RBForm */
+.widget .rbform .rbfield > label,
+.widget .rbform .rbfield > legend {
+	width: 40%;
+}
+.widget .rbform .rbfield > legend {
+	font-weight: normal;
+	color: inherit;
+}
+.widget .rbform .rbfield > div {
+	width: 60%;
+	padding-left: 3%;
+}

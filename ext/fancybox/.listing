@@ -1,0 +1,13 @@
+drwxr-xr-x    3 Iusr_12428 inetuser         4096 Sep  3  2015 .
+drwxr-xr-x   11 Iusr_12428 inetuser         4096 Sep  6  2016 ..
+-rwxr-xr-x    1 Iusr_12428 inetuser           43 Sep  6  2015 blank.gif
+-rwxr-xr-x    1 Iusr_12428 inetuser          330 Sep  6  2015 fancybox.init.js
+-rwxr-xr-x    1 Iusr_12428 inetuser         6567 Sep  6  2015 fancybox_loading.gif
+-rwxr-xr-x    1 Iusr_12428 inetuser        13984 Sep  6  2015 fancybox_loading@2x.gif
+-rwxr-xr-x    1 Iusr_12428 inetuser         1003 Sep  6  2015 fancybox_overlay.png
+-rwxr-xr-x    1 Iusr_12428 inetuser         1362 Sep  6  2015 fancybox_sprite.png
+-rwxr-xr-x    1 Iusr_12428 inetuser         6553 Sep  6  2015 fancybox_sprite@2x.png
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 helpers
+-rwxr-xr-x    1 Iusr_12428 inetuser         4895 Sep  6  2015 jquery.fancybox.css
+-rwxr-xr-x    1 Iusr_12428 inetuser        48706 Sep  6  2015 jquery.fancybox.js
+-rwxr-xr-x    1 Iusr_12428 inetuser        23135 Sep  6  2015 jquery.fancybox.pack.js

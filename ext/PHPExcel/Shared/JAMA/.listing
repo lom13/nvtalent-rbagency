@@ -1,0 +1,12 @@
+drwxr-xr-x    5 Iusr_12428 inetuser         4096 Sep  3  2015 .
+drwxr-xr-x    7 Iusr_12428 inetuser         4096 Sep  3  2015 ..
+-rwxr-xr-x    1 Iusr_12428 inetuser          500 Sep  6  2015 CHANGELOG.TXT
+-rwxr-xr-x    1 Iusr_12428 inetuser         3274 Sep  6  2015 CholeskyDecomposition.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        22703 Sep  6  2015 EigenvalueDecomposition.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         6105 Sep  6  2015 LUDecomposition.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        28796 Sep  6  2015 Matrix.php
+-rwxr-xr-x    1 Iusr_12428 inetuser         5736 Sep  6  2015 QRDecomposition.php
+-rwxr-xr-x    1 Iusr_12428 inetuser        13002 Sep  6  2015 SingularValueDecomposition.php
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 examples
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 tests
+drwxr-xr-x    2 Iusr_12428 inetuser         4096 Sep  3  2015 utils
