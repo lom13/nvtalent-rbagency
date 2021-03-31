@@ -127,7 +127,7 @@ jQuery(document).ready(function($) {
 			
 			if(requestMediaCat == 'all'){
 				$('.rbprofile-list.'+classDisplay).show();
-				$('.profile-voiceover ul.links li:NOT(.site_link)').hide();
+				// $('.profile-voiceover ul.links li:NOT(.site_link)').hide();
 				$('.profile-voiceover ul.links li.'+classDisplay).show();
 			}else{
 				$('.rbprofile-list.'+requestMediaCat+'.'+classDisplay).show();
@@ -146,7 +146,7 @@ jQuery(document).ready(function($) {
 				$(this).parent().parent().siblings('li.spacer-voice').append($(this).html());
 				//console.log($(this).html());
 			});
-			jQuery('.profile-voiceover li.site_link.hover-audio').hide();
+			// jQuery('.profile-voiceover li.site_link.hover-audio').hide();
 		}
 		
 		// $("div.vertical-col:empty").remove();
@@ -168,6 +168,7 @@ jQuery(document).ready(function($) {
 		});
 
 		var totaldiv = visibledivs.length;
+		console.log(totaldiv);
 		if(totaldiv > 1){
 			var profiles_per_col = totaldiv / 4;
 			var profiles_per_col_round = Math.round(profiles_per_col);

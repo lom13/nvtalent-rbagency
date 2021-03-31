@@ -1985,6 +1985,7 @@ class RBAgency_Profile {
 				// $all_html.= "<h1>".$profiles_per_col."</h1>";
 				// $all_html.= "<h1>".$rb_agency_option_layoutprofilelistlayout."</h1>";
 
+				// echo "<pre>"; var_export($results); exit;
 				// Loop through Profiles
 				foreach($results as $profile) {
 					$availability = '';
@@ -3151,7 +3152,10 @@ class RBAgency_Profile {
 			 
 			 $queryMedia = "SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID =  '%d' AND ProfileMediaType 
 			        NOT IN ('Link','Image','Demo Reel','Video Monologue','Video Slate','SoundCloud','Resume','Headshot','Polaroid','CompCard')";
-			 
+
+			        // $queryMedia = "SELECT * FROM " . table_agency_profile_media . " 
+			        // WHERE ProfileID = '%d' AND ProfileMediaType='rbcustommedia_commercial_button_mp3_1'";
+			 				
 							$resultsMedia =  $wpdb->get_results($wpdb->prepare($queryMedia, $ProfileID),ARRAY_A);
 							$countMedia = $wpdb->num_rows;
 							$outVideoMedia = "";
