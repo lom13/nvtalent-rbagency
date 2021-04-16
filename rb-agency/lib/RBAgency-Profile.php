@@ -3178,34 +3178,111 @@ class RBAgency_Profile {
 							}
 							//<li>'.sanitize_title($dataMedia['ProfileMediaType']).' <a href="'.$mp3link.'" title="" class="mp3-link icon-website rb-icon">
 							
-							$voicedemo_links .= (count($resultsMedia) > 1) ? '<li class="site_link spacer-voice"></li><li class="site_link hover-audio"><i class="fa fa-bars"></i><ul>' : '';    // add dropdown for multiple audio
-							$_mp3typeClass = array();
-							$audios = 0;
-							foreach ($resultsMedia  as $dataMedia) {
-								$audios++;
-								$_typeClass = sanitize_title_with_dashes($dataMedia['ProfileMediaType']);
-								$_typeClass = str_replace('/','', $_typeClass);
-							
-								//custom database mp3 type.
-								if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false){
-									//we need to get only the ID.
-									//rbcustommedia_audio-book_button_mp3_71
-									$_revType = strrev($dataMedia['ProfileMediaType']); // 17_3pm_nottub..
-									$explTyep = explode('_',$_revType); //17 - 3pm - nottub
-									$_typeID = strrev($explTyep[0]); //71
-									$_typeClass = 'custom_mp3_' . $_typeID;
-									$_mediaTypeArr = explode("_", $dataMedia['ProfileMediaType']);
-									$_typeLabel = $_mediaTypeArr[1];									
+
+							// Divide all media by type
+							$categories = array(
+							  'trailers' => array(),
+							  'spanish'  => array(),
+							  'promo'  => array(),
+							  'industrial'  => array(),
+							  'commercial'  => array(),
+							  'character/animation'  => array(),
+							);
+							// echo "<pre>";
+
+							foreach ($categories as $index => $category) {
+
+							  foreach ($resultsMedia as $key => $value) {
+							    if ($index == explode('_', $value['ProfileMediaType'])[1]) {
+							      array_push($categories[$index], $value);
+							    }
+							  }
+
+							}
+							// echo "<pre>";
+							// var_export($categories);
+							$resultsMedia = $categories;
+							foreach ($categories as $key => $value) {
+								// echo "<pre>"; var_export($value);
+								// There is an mp3
+								if (count($value) > 0) {
+									// check if has multiple media
+									if (count($value) > 1) {
+										$voicedemo_links .= self::generate_multiple_mp3($value, $dataList);
+									} else {
+										$voicedemo_links .= self::generate_mp3($value, $dataList);
+									}
+									
+									// var_export($value);
 								}
 								
-								$_mp3typeClass[] = $_typeClass;
-								$mp3link = RBAGENCY_UPLOADDIR . $dataList["ProfileGallery"]. "/" . $dataMedia['ProfileMediaURL'];
+							}
+							// echo "<pre>";
+							// $test = array();
+							$_mp3typeClass = array();
+							foreach ($categories as $key => $value) {
+								// var_export($value);
+								// There is an mp3
+								if (count($value) > 0) {
+									$_mp3typeClass = array_merge($_mp3typeClass, self::generate_mp3_type_class($value));
+									// $_mp3typeClass = self::generate_mp3_type_class($value);
+									 // var_export($_mp3typeClass);
+								}
 								
-								$voicedemo_links .= "\n";								
-								$voicedemo_links .= '<li class="'.$_typeClass.'"><a href="#" title="" alt="" class="play-button" voicelink="'.$mp3link.'"><i class="fa fa-play"></i></a></li>';								
 							}
 
-							$voicedemo_links .= (count($resultsMedia) > 1) ? '</ul></li>' : ''; // close for multiple audio dropdown
+
+							// echo $dataList["ProfileID"];
+							
+							// var_export($_mp3typeClass);
+							// echo "-----------------------";
+							// $voicedemo_links .= self::generate_mp3($resultsMedia);
+							// $_mp3typeClass = self::generate_mp3_type_class($resultsMedia);
+
+
+
+							// foreach ($categories as $key => $value) {
+							// 	# code...
+							// }
+
+
+
+
+
+
+
+
+							// $voicedemo_links .= (count($resultsMedia) > 1) ? '<li class="site_link spacer-voice"></li><li class="site_link hover-audio"><i class="fa fa-bars"></i><ul>' : '';    // add dropdown for multiple audio
+							// $_mp3typeClass = array();
+							// $audios = 0;
+
+							// foreach ($resultsMedia  as $dataMedia) {
+							// 	$audios++;
+							// 	$_typeClass = sanitize_title_with_dashes($dataMedia['ProfileMediaType']);
+							// 	$_typeClass = str_replace('/','', $_typeClass);
+							
+							// 	//custom database mp3 type.
+							// 	if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false){
+							// 		//we need to get only the ID.
+							// 		//rbcustommedia_audio-book_button_mp3_71
+							// 		$_revType = strrev($dataMedia['ProfileMediaType']); // 17_3pm_nottub..
+							// 		$explTyep = explode('_',$_revType); //17 - 3pm - nottub
+							// 		$_typeID = strrev($explTyep[0]); //71
+							// 		$_typeClass = 'custom_mp3_' . $_typeID;
+							// 		$_mediaTypeArr = explode("_", $dataMedia['ProfileMediaType']);
+							// 		$_typeLabel = $_mediaTypeArr[1];									
+							// 	}
+								
+							// 	$_mp3typeClass[] = $_typeClass;
+							// 	$mp3link = RBAGENCY_UPLOADDIR . $dataList["ProfileGallery"]. "/" . $dataMedia['ProfileMediaURL'];
+								
+							// 	$voicedemo_links .= "\n";								
+							// 	$voicedemo_links .= '<li mp3_type2="'.$_typeClass.'" class="playbutton '.$_typeClass.'"><a href="#" title="" alt="" class="play-button" voicelink="'.$mp3link.'"><i class="fa fa-play"></i></a></li>';								
+							// }
+
+							// $voicedemo_links .= (count($resultsMedia) > 1) ? '</ul></li>' : ''; // close for multiple audio dropdown
+							// Break this ---------------------------------
+
 
 							$voicedemo_links .= '</ul><!-- .links -->';
 							
@@ -3226,7 +3303,7 @@ class RBAgency_Profile {
 
 				$displayHTML .= '
 				<div data-profileid="'.$dataList["ProfileID"].'" id="rbprofile-'.$dataList["ProfileID"].'" class="rbprofile-list '.$_profiletypeClassUniq.' '.$_mp3typeClassUniq.'" mp3_type="'.$_mp3typeClassUniq.'">
-					<div class="profile-voiceover">
+					<div class="profile-voiceover test">
 					   	<strong class="name"><a href="'. RBAGENCY_PROFILEDIR . $dataList["ProfileGallery"] .'">
 						'. stripslashes($ProfileContactDisplay) .'</a></strong>'.$voicedemo_links .'
 					</div><!-- .profile-voiceover -->
@@ -3249,6 +3326,109 @@ class RBAgency_Profile {
 			return $displayHTML;
 
 		}
+
+	/*
+	 * Generate mp3 display
+	*/
+    function generate_mp3($resultsMedia, $dataList) {
+		$_mp3typeClass = array();
+		$audios = 0;
+		// var_export($resultsMedia);
+
+		foreach ($resultsMedia  as $dataMedia) {
+			$audios++;
+			$_typeClass = sanitize_title_with_dashes($dataMedia['ProfileMediaType']);
+			$_typeClass = str_replace('/','', $_typeClass);
+		
+			//custom database mp3 type.
+			if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false){
+				//we need to get only the ID.
+				//rbcustommedia_audio-book_button_mp3_71
+				$_revType = strrev($dataMedia['ProfileMediaType']); // 17_3pm_nottub..
+				$explTyep = explode('_',$_revType); //17 - 3pm - nottub
+				$_typeID = strrev($explTyep[0]); //71
+				$_typeClass = 'custom_mp3_' . $_typeID;
+				$_mediaTypeArr = explode("_", $dataMedia['ProfileMediaType']);
+				$_typeLabel = $_mediaTypeArr[1];									
+			}
+			
+			$_mp3typeClass[] = $_typeClass;
+			$mp3link = RBAGENCY_UPLOADDIR . $dataList["ProfileGallery"]. "/" . $dataMedia['ProfileMediaURL'];
+			
+			$voicedemo_links .= "\n";								
+			$voicedemo_links .= '<li mp3_type2="'.$_typeClass.'" class="playbutton '.$_typeClass.'"><a href="#" title="" alt="" class="play-button" voicelink="'.$mp3link.'"><i class="fa fa-play"></i></a></li>';								
+		}
+		return $voicedemo_links;
+    }
+
+    /*
+	 * Generate multiple mp3
+    */
+    function generate_multiple_mp3($resultsMedia, $dataList) {
+    	$voicedemo_links .= (count($resultsMedia) > 1) ? '<li class="site_link spacer-voice"></li><li class="site_link hover-audio" mp3_type2="'.$_typeClass.'"><i class="fa fa-bars"></i><ul>' : '';    // add dropdown for multiple audio
+		$_mp3typeClass = array();
+		$audios = 0;
+		// var_export($resultsMedia);
+
+		foreach ($resultsMedia  as $dataMedia) {
+			$audios++;
+			$_typeClass = sanitize_title_with_dashes($dataMedia['ProfileMediaType']);
+			$_typeClass = str_replace('/','', $_typeClass);
+		
+			//custom database mp3 type.
+			if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false){
+				//we need to get only the ID.
+				//rbcustommedia_audio-book_button_mp3_71
+				$_revType = strrev($dataMedia['ProfileMediaType']); // 17_3pm_nottub..
+				$explTyep = explode('_',$_revType); //17 - 3pm - nottub
+				$_typeID = strrev($explTyep[0]); //71
+				$_typeClass = 'custom_mp3_' . $_typeID;
+				$_mediaTypeArr = explode("_", $dataMedia['ProfileMediaType']);
+				$_typeLabel = $_mediaTypeArr[1];									
+			}
+			
+			$_mp3typeClass[] = $_typeClass;
+			$mp3link = RBAGENCY_UPLOADDIR . $dataList["ProfileGallery"]. "/" . $dataMedia['ProfileMediaURL'];
+			
+			$voicedemo_links .= "\n";								
+			$voicedemo_links .= '<li class="playbutton '.$_typeClass.'"><a href="#" title="" alt="" class="play-button" voicelink="'.$mp3link.'"><i class="fa fa-play"></i></a></li>';								
+		}
+
+		$voicedemo_links .= (count($resultsMedia) > 1) ? '</ul></li>' : ''; // close for multiple audio dropdown
+		return $voicedemo_links;
+    }
+
+    /*
+	 * Generate mp3 TYPE class
+	*/
+    function generate_mp3_type_class($resultsMedia) {
+		$_mp3typeClass = array();
+		$audios = 0;
+
+		foreach ($resultsMedia  as $dataMedia) {
+			$audios++;
+			$_typeClass = sanitize_title_with_dashes($dataMedia['ProfileMediaType']);
+			$_typeClass = str_replace('/','', $_typeClass);
+		
+			//custom database mp3 type.
+			if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false){
+				//we need to get only the ID.
+				//rbcustommedia_audio-book_button_mp3_71
+				$_revType = strrev($dataMedia['ProfileMediaType']); // 17_3pm_nottub..
+				$explTyep = explode('_',$_revType); //17 - 3pm - nottub
+				$_typeID = strrev($explTyep[0]); //71
+				$_typeClass = 'custom_mp3_' . $_typeID;
+				$_mediaTypeArr = explode("_", $dataMedia['ProfileMediaType']);
+				$_typeLabel = $_mediaTypeArr[1];									
+			}
+
+			$_mp3typeClass[] = $_typeClass;			
+		}
+
+		return $_mp3typeClass;
+		
+    }
+
 	/* 
 	 * Move view_custom_fields.php code in class file
 	 * genrate and display custome field

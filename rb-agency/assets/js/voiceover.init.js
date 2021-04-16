@@ -34,7 +34,6 @@ jQuery(document).ready(function($) {
 	    audioPlayer.pause();
 	    
 	    
-	    
 	    //check if pause or play
 	    var audioContent = $(this).html();
 	    if(audioContent == '<i class="fa fa-pause"></i>'){
@@ -42,7 +41,7 @@ jQuery(document).ready(function($) {
 	        audioPlayerJS[0].pause();
 	        PlayPause();
 	    }else{
-	    
+	    	console.log('play');
 		    audioPlayer.src = sourceUrl;
 		    audioPlayer.load();//suspends and restores all audio element
 		
@@ -110,8 +109,26 @@ jQuery(document).ready(function($) {
 		$(this).addClass("active");
 		var classDisplay = $(this).attr('media-cate-id');
 		
-		
-		
+		//Reset all
+		jQuery('#profile-list li.playbutton').each(function() {
+			var mp3type = jQuery(this).attr('mp3_type2');
+			// show Commercial only by default
+			if (jQuery(this).hide()) {
+				jQuery(this).show();
+			}
+		});
+
+		// Upon clicking category tab, it will only show those mp3 with the same category
+		jQuery('#profile-list li.playbutton').each(function() {
+			var mp3type = jQuery(this).attr('mp3_type2');
+			// show Commercial only by default
+			// console.log('mp3type: '+mp3type);
+			// console.log('classDisplay: '+classDisplay);
+			if (mp3type != classDisplay) {
+				jQuery(this).hide();
+			}
+		});
+
 		//console.log(classDisplay);
 		if(classDisplay == 'all'){
 			if(requestMediaCat == 'all'){
@@ -168,7 +185,7 @@ jQuery(document).ready(function($) {
 		});
 
 		var totaldiv = visibledivs.length;
-		console.log(totaldiv);
+		// console.log(totaldiv);
 		if(totaldiv > 1){
 			var profiles_per_col = totaldiv / 4;
 			var profiles_per_col_round = Math.round(profiles_per_col);
@@ -179,11 +196,11 @@ jQuery(document).ready(function($) {
 			var pwake_pwake = pwake.substr(pwake_index,pwake_length);
 			// var pwake = profiles_per_col.substr();
 			// profiles_per_col = Math.round(profiles_per_col);
-			console.log("total "+totaldiv);
-			console.log("percol "+profiles_per_col);
-			console.log("pwake index "+pwake.indexOf("."));
-			console.log("pwake length "+pwake.length);
-			console.log("pwake "+pwake.substr(pwake_index,pwake_length));
+			// console.log("total "+totaldiv);
+			// console.log("percol "+profiles_per_col);
+			// console.log("pwake index "+pwake.indexOf("."));
+			// console.log("pwake length "+pwake.length);
+			// console.log("pwake "+pwake.substr(pwake_index,pwake_length));
 			
 
 			var ctr = 0;
@@ -192,7 +209,7 @@ jQuery(document).ready(function($) {
 				if(totaldiv % 4 !== 0){
 					if(pwake_pwake == ".25" && ctr == 0){
 						profiles_per_col = profiles_per_col_plus;
-						console.log("hahaha");
+						// console.log("hahaha");
 					} else {
 						profiles_per_col = profiles_per_col_round;	
 					}
@@ -216,7 +233,7 @@ jQuery(document).ready(function($) {
 					sorteddivs.slice(i, i+profiles_per_col).wrapAll('<div class="vertical-col"></div>');
 				}
 				ctr++;
-				console.log("i "+i);
+				// console.log("i "+i);
 			}
 		} 
 
@@ -230,7 +247,7 @@ jQuery(document).ready(function($) {
 	$('.rbprofile-list[data-profileid]').each(function() {
 		var data = $(this).attr('mp3_type');
 		var array_data = data.split(' ');
-		
+		// console.log('This one two: '+data);
 		/* $.each( array_data, function( key, value ){
             
 		}); */
@@ -241,9 +258,14 @@ jQuery(document).ready(function($) {
 	});	
 	$.merge(mediaTypeActive, ['all']);
 	var onlymediaShow= mediaTypeActive.unique();
-	//hide some media tab if not in all profiles listed
+
+	// console.log(onlymediaShow);
+
+	//hide some media tab if not in all profiles listed Or categories
 	$('.media-categories-link2 li a').each(function() {
 		var mediaID = $(this).attr('media-cate-id');
+		// console.log("MediaID: "+mediaID);
+		// console.log(jQuery.inArray(mediaID, onlymediaShow) == -1);
 		if(jQuery.inArray(mediaID, onlymediaShow) == -1){
 			$(this).parent().hide();
 		}
@@ -253,7 +275,15 @@ jQuery(document).ready(function($) {
 	$("ul.media-categories-link li a[media-cate-id='all']").addClass("active");
 	//$("ul.media-categories-link2 li a[media-cate-id='all']").addClass("active");
 	
-	
+	// By loading the page. It will remove all mp3 if not Commercial mp3
+	jQuery('#profile-list li.playbutton').each(function() {
+		var mp3type = jQuery(this).attr('mp3_type2');
+		// show Commercial only by default
+		if (mp3type != "custom_mp3_1") {
+			jQuery(this).hide();
+		}
+	});
+
 	function reset_media_noAll(){
 		
 		//hide the All Media
