@@ -3201,18 +3201,26 @@ class RBAgency_Profile {
 							}
 							// echo "<pre>";
 							// var_export($categories);
-							$resultsMedia = $categories;
+							// exit;
+							// $resultsMedia = $categories;
 							foreach ($categories as $key => $value) {
-								// echo "<pre>"; var_export($value);
 								// There is an mp3
 								if (count($value) > 0) {
 									// check if has multiple media
 									if (count($value) > 1) {
+										// echo "Count: " . count($value) . "<br/>";
+										// $voicedemo_links .= self::generate_mp3($value, $dataList);
 										$voicedemo_links .= self::generate_multiple_mp3($value, $dataList);
 									} else {
+										// var_export($value);
+										// echo "Count: " . $value . "<br/>";
+										// echo "ID: " . $value['ProfileID'] . "<br/>";
 										$voicedemo_links .= self::generate_mp3($value, $dataList);
 									}
 									
+									// var_export($value);
+								} else {
+									// $voicedemo_links .= self::generate_multiple_mp3($value, $dataList);
 									// var_export($value);
 								}
 								
@@ -3230,20 +3238,6 @@ class RBAgency_Profile {
 								}
 								
 							}
-
-
-							// echo $dataList["ProfileID"];
-							
-							// var_export($_mp3typeClass);
-							// echo "-----------------------";
-							// $voicedemo_links .= self::generate_mp3($resultsMedia);
-							// $_mp3typeClass = self::generate_mp3_type_class($resultsMedia);
-
-
-
-							// foreach ($categories as $key => $value) {
-							// 	# code...
-							// }
 
 
 
@@ -3365,10 +3359,14 @@ class RBAgency_Profile {
 	 * Generate multiple mp3
     */
     function generate_multiple_mp3($resultsMedia, $dataList) {
-    	$voicedemo_links .= (count($resultsMedia) > 1) ? '<li class="site_link spacer-voice"></li><li class="site_link hover-audio" mp3_type2="'.$_typeClass.'"><i class="fa fa-bars"></i><ul>' : '';    // add dropdown for multiple audio
+
+    	$mp3Type = explode("_", $resultsMedia[0]['ProfileMediaType']);
+
+    	$finalType = "custom_" . $mp3Type[3] . "_" . $mp3Type[4];
+
+    	$voicedemo_links .= (count($resultsMedia) > 1) ? '<li class="site_link spacer-voice"></li><li class="playhamburger site_link hover-audio" mp3_type2="'.$finalType.'"><i class="bars fa fa-play"></i><ul>' : '';    // add dropdown for multiple audio
 		$_mp3typeClass = array();
 		$audios = 0;
-		// var_export($resultsMedia);
 
 		foreach ($resultsMedia  as $dataMedia) {
 			$audios++;
@@ -3391,7 +3389,7 @@ class RBAgency_Profile {
 			$mp3link = RBAGENCY_UPLOADDIR . $dataList["ProfileGallery"]. "/" . $dataMedia['ProfileMediaURL'];
 			
 			$voicedemo_links .= "\n";								
-			$voicedemo_links .= '<li class="playbutton '.$_typeClass.'"><a href="#" title="" alt="" class="play-button" voicelink="'.$mp3link.'"><i class="fa fa-play"></i></a></li>';								
+			$voicedemo_links .= '<li class="'.$_typeClass.'"><a href="#" title="" alt="" class="play-button" voicelink="'.$mp3link.'"><i class="fa fa-play"></i></a></li>';								
 		}
 
 		$voicedemo_links .= (count($resultsMedia) > 1) ? '</ul></li>' : ''; // close for multiple audio dropdown

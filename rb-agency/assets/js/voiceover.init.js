@@ -122,11 +122,20 @@ jQuery(document).ready(function($) {
 		jQuery('#profile-list li.playbutton').each(function() {
 			var mp3type = jQuery(this).attr('mp3_type2');
 			// show Commercial only by default
-			// console.log('mp3type: '+mp3type);
-			// console.log('classDisplay: '+classDisplay);
 			if (mp3type != classDisplay) {
 				jQuery(this).hide();
 			}
+		});
+
+		// Hide multiple mp3s
+		jQuery(document).ready(function() {
+			jQuery('.playhamburger').each(function() {
+			    var mp3type = jQuery(this).attr('mp3_type2');
+			    if(classDisplay != mp3type){
+			        jQuery(this).hide()
+			    }
+
+			});
 		});
 
 		//console.log(classDisplay);
@@ -283,6 +292,19 @@ jQuery(document).ready(function($) {
 			jQuery(this).hide();
 		}
 	});
+
+	jQuery(document).ready(function() {
+		jQuery('.playhamburger').each(function() {
+			console.log('mp3typedsa:');
+		    var mp3type = jQuery(this).attr('mp3_type2');
+		    console.log(mp3type != 'custom_mp3_1');
+		    if("custom_mp3_1" != mp3type){
+		        jQuery(this).hide()
+		    }
+
+		});
+	});
+	
 
 	function reset_media_noAll(){
 		
