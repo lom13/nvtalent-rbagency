@@ -215,17 +215,34 @@ class RBAgency_Extends {
 					
 					//$resultsP = $wpdb->get_results($_medSQLCustom,ARRAY_A);
 					
+					// Attributes
+					$showCategory = explode(",", $atts['profileumltitype']);
+					
+
 					$_titleattr = '';
 					$_allMedLink = '';
 					foreach($resultsP as $key => $val){
-						$_te = 'custom_mp3_'. $val['MediaCategoryID'];
-						$_allMedLink .= '<li><a href="#" media-cate-id="'.$_te.'">'.$val['MediaCategoryTitle'].'</a></li>';
+						for ($i=0; $i < count($showCategory); $i++) {
+							if ( $showCategory[$i] == $val['MediaCategoryID']) {
+								$_te = 'custom_mp3_'. $val['MediaCategoryID'];
+								$_allMedLink .= '<li><a href="#" media-cate-id="'.$_te.'">'.$val['MediaCategoryTitle'].'</a></li>';
+							}
+							
+						}
+						
 					}
 					echo'<hr />';
+					// echo '
+					// <ul class="media-categories-link2">
+					// 	<li><a href="#" media-cate-id="all">All</a></li>
+					// 	<li><a href="#" media-cate-id="voicedemo">Voice Demo</a></li>
+					// 	'.$_allMedLink.'
+					// </ul>
+					// ';
+
 					echo '
 					<ul class="media-categories-link2">
 						<li><a href="#" media-cate-id="all">All</a></li>
-						<li><a href="#" media-cate-id="voicedemo">Voice Demo</a></li>
 						'.$_allMedLink.'
 					</ul>
 					';

@@ -271,14 +271,14 @@ jQuery(document).ready(function($) {
 	// console.log(onlymediaShow);
 
 	//hide some media tab if not in all profiles listed Or categories
-	$('.media-categories-link2 li a').each(function() {
-		var mediaID = $(this).attr('media-cate-id');
-		// console.log("MediaID: "+mediaID);
-		// console.log(jQuery.inArray(mediaID, onlymediaShow) == -1);
-		if(jQuery.inArray(mediaID, onlymediaShow) == -1){
-			$(this).parent().hide();
-		}
-	});
+	// $('.media-categories-link2 li a').each(function() {
+	// 	var mediaID = $(this).attr('media-cate-id');
+	// 	// console.log("MediaID: "+mediaID);
+	// 	// console.log(jQuery.inArray(mediaID, onlymediaShow) == -1);
+	// 	if(jQuery.inArray(mediaID, onlymediaShow) == -1){
+	// 		$(this).parent().hide();
+	// 	}
+	// });
 	
 	//default All - hu kers if on=bject exist or not.. jquery can handle it.
 	$("ul.media-categories-link li a[media-cate-id='all']").addClass("active");
